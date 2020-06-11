@@ -5,6 +5,7 @@ import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Loader;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -71,12 +72,10 @@ public class Covid19Activity extends AppCompatActivity implements LoaderCallback
     @Override
     public void onLoadFinished(Loader<List<CovidStats>> loader, List<CovidStats> data) {
 
-
-
-
+        // Hide loading indicator because the data has been loaded
+        View loadingIndicator = findViewById(R.id.loading_indicator);
+        loadingIndicator.setVisibility(View.GONE);
         mAdapter.clear();
-
-
         if (data != null && !data.isEmpty()) {
             mAdapter.addAll(data);
         }
